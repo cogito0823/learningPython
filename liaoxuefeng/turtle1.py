@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from turtle import *
 
 # 设置色彩模式是RGB:
