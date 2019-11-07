@@ -8,6 +8,7 @@ from lxml import etree
 import lxml.html
 import os
 import time
+import string
 
 #小说的保存文件夹
 novel_save_dir = os.path.join(os.getcwd(),'novel_cache/')
@@ -41,8 +42,11 @@ def parsing_chapter(url):
     contents = html.xpath('//*[@id="content"]/text()')
     content = ''
     for i in contents[:-2]:
+        if '&amp;' in i:
+            set1 = i.find('&amp;')
+            i = i[:set1] + '\n\n'
         content += i.strip()
-    content = content.replace('&1t;/p>','\n')
+    content = content.replace('&1t;/p>','\n\n')
     save_novel(title,content)
 
 def save_novel(name,content):
