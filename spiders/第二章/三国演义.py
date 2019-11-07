@@ -31,7 +31,7 @@ def fetch_chapter_urls():
     html = lxml.html.parse(urllib.request.urlopen(req))
     hrefs = html.xpath('//dd/a/@href')
 
-    for href in hrefs[12:]:
+    for href in hrefs[-1:]:
         chapter_url_list.append(urllib.parse.urljoin(novel_base_url,href))
     print(chapter_url_list)
 
@@ -44,8 +44,11 @@ def parsing_chapter(url):
     for i in contents[:-2]:
         if '&amp;' in i:
             set1 = i.find('&amp;')
-            i = i[:set1] + '\n\n'
-        content += i.strip()
+            i = i[:set1]
+            content += i.strip()
+            content = content + '\n\n'
+        else:
+            content += i.strip()
     content = content.replace('&1t;/p>','\n\n')
     save_novel(title,content)
 
