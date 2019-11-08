@@ -11,12 +11,12 @@ import time
 import string
 
 #小说的保存文件夹
-novel_save_dir = os.path.join(os.getcwd(),'novel_cache/')
+novel_save_dir = os.path.join(os.getcwd(),'盗墓笔记2019/')
 #小说站点的URL
 novel_base_url = 'http://www.biqukan.com'
 
 #获取小说的URL
-novel_url = urllib.parse.urljoin(novel_base_url,'/50_50096/')
+novel_url = urllib.parse.urljoin(novel_base_url,'/66_66997/')
 
 chapter_url_list = []
 
@@ -31,7 +31,7 @@ def fetch_chapter_urls():
     html = lxml.html.parse(urllib.request.urlopen(req))
     hrefs = html.xpath('//dd/a/@href')
 
-    for href in hrefs[-1:]:
+    for href in hrefs[12:]:
         chapter_url_list.append(urllib.parse.urljoin(novel_base_url,href))
     print(chapter_url_list)
 
@@ -48,6 +48,7 @@ def parsing_chapter(url):
             content += i.strip()
             content = content + '\n\n'
         else:
+            content = content + '\n\n'
             content += i.strip()
     content = content.replace('&1t;/p>','\n\n')
     save_novel(title,content)
