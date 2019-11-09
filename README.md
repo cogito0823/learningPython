@@ -1,5 +1,5 @@
 # learningPython
-学习 Pyhton
+学习 Pythton
 ## 目录
 - 邮件：学习和提供邮件服务的脚本文件夹
 - liangxuefeng：通过廖雪峰博客学习Python的习题集
