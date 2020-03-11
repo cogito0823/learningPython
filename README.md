@@ -6,6 +6,4 @@
 - spiders：学习和提供爬虫服务的脚本文件夹
 - 从入门到精通：《Python编程：从入门到精通》习题
 
-我的博客页面：[ccogito.xyz](https:ccogito.xyz)
-托管博客页面的仓库：[github.com/cogito0823/cogito0823.github.io](https://github.com/cogito0823/cogito0823.github.io)
-qq：754032908 （欢迎加好友交流！）
+我的博客：[blog.ccogito.xyz](https://blog.ccogito.xyz)
