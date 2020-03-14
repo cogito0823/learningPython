@@ -10,7 +10,7 @@
 @Desc    :   None
 '''
 
-import name_function
+from name_function import *
 
 print("Enter 'q' at any time to quit.")
 while True:
