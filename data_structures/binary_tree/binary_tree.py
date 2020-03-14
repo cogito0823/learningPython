@@ -4,14 +4,14 @@ class Node():
         self.left_child = None
         self.right_child = None
 def create_binary_tree(tree_list):
-    data = tree_lsit.pop(0)
-    if data is None:
-        return None
-    else:
+    data = tree_list.pop(0)
+    if data:
         node = Node(data)
         node.left_child = create_binary_tree(tree_list)
         node.right_child = create_binary_tree(tree_list)
         return node
+    else:
+        return None
 def pre_order_Traveral(node):
     if node:
         print(node.data)
