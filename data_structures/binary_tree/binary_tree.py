@@ -14,8 +14,7 @@ def create_binary_tree(tree_list):
             node.left_child = create_binary_tree(tree_list)
             node.right_child = create_binary_tree(tree_list)
             return node
-        else:
-            return None
+    return None
 def pre_order_Traveral(node):
     """先序遍历"""
     if node:
