@@ -7,14 +7,15 @@ class Node():
         self.right_child = None
 def create_binary_tree(tree_list):
     """通过一个数组创建二叉树"""
-    data = tree_list.pop(0)
-    if data:
-        node = Node(data)
-        node.left_child = create_binary_tree(tree_list)
-        node.right_child = create_binary_tree(tree_list)
-        return node
-    else:
-        return None
+    if tree_list:
+        data = tree_list.pop(0)
+        if data:
+            node = Node(data)
+            node.left_child = create_binary_tree(tree_list)
+            node.right_child = create_binary_tree(tree_list)
+            return node
+        else:
+            return None
 def pre_order_Traveral(node):
     """先序遍历"""
     if node:
