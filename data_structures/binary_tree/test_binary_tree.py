@@ -32,5 +32,6 @@ class BinaryTreeTestCase(unittest.TestCase):
         self.assertEqual(node_full.data,node.data)
         self.assertEqual(node_full.left_child.data,2)
         self.assertEqual(node_full.right_child,None)
-
+    def test_none_is_none(self):
+        self.assertEqual(None,None)
 unittest.main()
