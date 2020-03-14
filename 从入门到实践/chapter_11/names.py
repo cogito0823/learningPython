@@ -10,7 +10,7 @@
 @Desc    :   None
 '''
 
-from name_function import get_formatted_name
+import name_function
 
 print("Enter 'q' at any time to quit.")
 while True:
