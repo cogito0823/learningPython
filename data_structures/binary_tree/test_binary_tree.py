@@ -10,28 +10,39 @@
 #########################################################################
 
 import unittest
-import binary_tree as bt
+import stack_binary_tree as bt
 
 class BinaryTreeTestCase(unittest.TestCase):
     """测试binary_tree.py"""
-
+    def setUp(self):
+        self.node = bt.Node(1)
+        self.node.left_child = bt.Node(2)
+        self.node.right_child = None
+        self.node_None = bt.create_binary_tree(None)
+        self.node_None1 = bt.create_binary_tree([None])
+        self.node_full = bt.create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None,None])
+        
     def test_create_tree(self):
         """能够正确生成二叉树吗？"""
-        node = bt.Node(1)
-        node.left_child = 2
-        node.right_child = None
-        node_full = bt.create_binary_tree([1,2,3,None,None,None,None])
+        self.assertEqual(self.node_None,None)
+        self.assertEqual(self.node_None1,None)
+        self.assertTrue(self.node_full == self.node)
+    
+    def test_pre_order_traveral(self):
+        # 当二叉树不为空
+        result = bt.pre_order_traveral(self.node_full)
+        self.assertListEqual(result,[1,2,3,4,5,6])
         
+        # 当二叉树为空
+        result_None = bt.pre_order_traveral(None)
+        self.assertListEqual(result_None,[])
         
-        node_None = bt.create_binary_tree(None)
-        self.assertEqual(node_None,None)
+    # def test_in_order_traveral(self):
+    #     result = bt.pre_order_traveral(self.node_full)
+    #     self.assertListEqual(result,[1,2,3,4,5,6])
         
-        node_None1 = bt.create_binary_tree([None])
-        self.assertEqual(node_None1,None)
-        
-        self.assertEqual(node_full.data,node.data)
-        self.assertEqual(node_full.left_child.data,2)
-        self.assertEqual(node_full.right_child,None)
-    def test_none_is_none(self):
-        self.assertEqual(None,None)
+    #     result_None = bt.pre_order_traveral(None)
+    #     self.assertListEqual(result_None,[])
+    
+    
 unittest.main()
