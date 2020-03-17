@@ -6,7 +6,7 @@
 @Time    :   2020/03/16 23:15:26
 @Author  :   cogito0823
 @Contact :   754032908@qq.com
-@Desc    :   用栈遍历二叉树
+@Desc    :   用栈存储、遍历二叉树
 '''
 
 class Node():
@@ -65,21 +65,21 @@ def in_order_traveral(node):
             node = node.right_child
     return result
 
-# def post_order_traveral(node):
-#     """后序遍历"""
-#     # result = []
-#     tree_stack = []
-#     while node or tree_stack:
-#         while node:
-#             tree_stack.append(node)
-#             node = node.left_child
+def post_order_traveral(node):
+    """后序遍历"""
+    # result = []
+    tree_stack = []
+    while node or tree_stack:
+        while node:
+            tree_stack.append(node)
+            node = node.left_child
         
-#         if tree_stack:
-#             node = tree_stack.pop()
-#             node = node.right_child
+        if tree_stack:
+            node = tree_stack.pop()
+            node = node.right_child
     
 if __name__ == "__main__":
-    post_order_traveral(create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None]))      
+    in_order_traveral(create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None]))
         
             
             

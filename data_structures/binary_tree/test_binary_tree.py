@@ -20,7 +20,7 @@ class BinaryTreeTestCase(unittest.TestCase):
         self.node.right_child = None
         self.node_None = bt.create_binary_tree(None)
         self.node_None1 = bt.create_binary_tree([None])
-        self.node_full = bt.create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None,None])
+        self.node_full = bt.create_binary_tree([1,2,3,4,None,None,4,None,None,5,None,None,None,None])
         
     def test_create_tree(self):
         """能够正确生成二叉树吗？"""
@@ -29,6 +29,8 @@ class BinaryTreeTestCase(unittest.TestCase):
         self.assertTrue(self.node_full == self.node)
     
     def test_pre_order_traveral(self):
+        """能否正确先序遍历"""
+        
         # 当二叉树不为空
         result = bt.pre_order_traveral(self.node_full)
         self.assertListEqual(result,[1,2,3,4,5,6])
@@ -37,12 +39,14 @@ class BinaryTreeTestCase(unittest.TestCase):
         result_None = bt.pre_order_traveral(None)
         self.assertListEqual(result_None,[])
         
-    # def test_in_order_traveral(self):
-    #     result = bt.pre_order_traveral(self.node_full)
-    #     self.assertListEqual(result,[1,2,3,4,5,6])
+    def test_in_order_traveral(self):
+        """能否正确中序遍历"""
         
-    #     result_None = bt.pre_order_traveral(None)
-    #     self.assertListEqual(result_None,[])
+        result = bt.pre_order_traveral(self.node_full)
+        self.assertListEqual(result,[1,2,3,4,5,6])
+        
+        result_None = bt.pre_order_traveral(None)
+        self.assertListEqual(result_None,[])
     
     
 unittest.main()

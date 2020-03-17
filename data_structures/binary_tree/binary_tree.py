@@ -15,6 +15,13 @@ class Node():
         self.data = data
         self.left_child = None
         self.right_child = None
+    
+    def __eq__(self,other):
+        return (self.__class__ == other.__class__ and 
+                self.data == other.data and 
+                ((not self.left_child and not other.left_child) or self.left_child.data == other.left_child.data) and 
+                ((not self.right_child and not other.right_child) or self.right_child.data == other.right_child.data))
+
         
 def create_binary_tree(tree_list):
     """通过一个数组创建二叉树"""
@@ -27,27 +34,42 @@ def create_binary_tree(tree_list):
             return node
     return None
 
-def pre_order_Traveral(node):
+def pre_order_traveral(node):
     """先序遍历"""
     result = []
-    if node:
-        result.append(node.data)
-        pre_order_Traveral(node.left_child)
-        pre_order_Traveral(node.right_child)
+    def traveral(node):
+        if node:
+            result.append(node.data)
+            traveral(node.left_child)
+            traveral(node.right_child)
+    traveral(node)
     return result
-   
-def in_order_Traveral(node):
+
+def in_order_traveral(node):
     """中序遍历"""
     result = []
-    if node:
-        in_order_Traveral(node.left_child)
-        result.append(node.data)
-        in_order_Traveral(node.right_child)
-        
-def post_order_Traveral(node):
+    # 迭代算法
+    def traveral(node):
+        if node:
+            traveral(node.left_child)
+            result.append(node.data)
+            traveral(node.right_child)
+    traveral(node)
+    return result    
+
+def post_order_traveral(node):
     """后序遍历"""
     result = []
-    if node:
-        post_order_Traveral(node.left_child)
-        post_order_Traveral(node.right_child)
-        result.append(node.data)
+    def traveral(node):
+        if node:
+            traveral(node.left_child)
+            traveral(node.right_child)
+            result.append(node.data)
+    traveral(node)
+    return result
+
+if __name__ == "__main__":
+    node = create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None,None])
+    List = post_order_traveral(node)
+    for i in List:
+        print(i)
