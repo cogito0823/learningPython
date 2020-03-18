@@ -56,4 +56,6 @@ class BinaryTreeTestCase(unittest.TestCase):
         
         result_None = bt.level_order_traversal(None)
         self.assertListEqual(result_None,[])
-unittest.main()
+
+if __name__ == "__main__":
+    unittest.main()
