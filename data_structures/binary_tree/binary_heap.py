@@ -6,7 +6,7 @@
 @Time    :   2020/03/18 11:23:12
 @Author  :   cogito0823
 @Contact :   754032908@qq.com
-@Desc    :   二叉堆
+@Desc    :   二叉堆 其特殊情况可以构建优先队列，即插入元素 + 删去根元素
 '''
 
 def up_adjust(array):
@@ -61,3 +61,18 @@ def build_heap(array):
             parent_index = last_parent_index - i
             down_adjust(array,parent_index)
     return array
+
+#################### 优先队列 ################### 
+
+class Queue(object):
+    def __init__(self,array):
+        self.array = build_heap(array)
+    def insert(self,element):
+        self.array.append(element)
+        self.array = up_adjust(self.array)
+    def pop(self):
+        result = self.array[0]
+        delete_element(self.array)
+        return result
+        
+        

@@ -6,7 +6,7 @@
 @Time    :   2020/03/18 11:57:06
 @Author  :   cogito0823
 @Contact :   754032908@qq.com
-@Desc    :   测试二叉堆
+@Desc    :   测试二叉堆 优先队列
 '''
 
 import binary_heap as binary_heap
@@ -77,5 +77,16 @@ class BheapTestCase(unittest.TestCase):
         self.assertListEqual(result_one_element,[])
         self.assertEqual(result_emp,[])
         self.assertEqual(result_None,None)
+        
+    def test_queue(self):
+        """测试优先队列"""
+        array = [5,6,2,3,4,0,1]
+        queue = binary_heap.Queue(array)
+        queue_array = queue.array.copy()
+        pop = queue.pop()
+        self.assertListEqual(queue_array,[0,3,1,6,4,2,5])
+        self.assertListEqual(queue.array,[1,3,2,6,4,5])
+        self.assertEqual(pop,0)
+            
 if __name__ == "__main__":
     unittest.main()
