@@ -10,7 +10,7 @@
 #########################################################################
 
 import unittest
-import stack_binary_tree as bt
+import binary_tree as bt
 
 class BinaryTreeTestCase(unittest.TestCase):
     """测试binary_tree.py"""
@@ -20,7 +20,7 @@ class BinaryTreeTestCase(unittest.TestCase):
         self.node.right_child = None
         self.node_None = bt.create_binary_tree(None)
         self.node_None1 = bt.create_binary_tree([None])
-        self.node_full = bt.create_binary_tree([1,2,3,4,None,None,4,None,None,5,None,None,None,None])
+        self.node_full = bt.create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None])
         
     def test_create_tree(self):
         """能够正确生成二叉树吗？"""

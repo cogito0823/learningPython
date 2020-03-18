@@ -68,20 +68,21 @@ def in_order_traveral(node):
 def post_order_traveral(node):
     """后序遍历"""
     # result = []
-    tree_stack = []
-    while node or tree_stack:
+    tree_stack = [node]
+    while tree_stack:
         while node:
-            tree_stack.append(node)
-            node = node.left_child
+            while node.left_child:
+                tree_stack.append(node.left_child)
+                node = node.left_child
+            node = tree_stack[-1]
         
-        if tree_stack:
-            node = tree_stack.pop()
+        if node.right_child:
             node = node.right_child
+        else:
+            print(node.data)
+            node = tree_stack.pop()
+            node = tree_stack[-1].right_child
+            tree_stack.append(node)
     
 if __name__ == "__main__":
-    in_order_traveral(create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None]))
-        
-            
-            
-    
-        
+    post_order_traveral(create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None]))
