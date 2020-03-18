@@ -10,6 +10,7 @@
 '''
 
 def up_adjust(array):
+    """插入操作"""
     if array: 
         child_index = len(array) - 1
         parent_index = (child_index-1) // 2
@@ -20,6 +21,7 @@ def up_adjust(array):
     return array
 
 def down_adjust(array,parent_index):
+    """下调操作"""
     if array:
         lenth = len(array)
         lchild_index = 2 * parent_index + 1
@@ -39,6 +41,7 @@ def down_adjust(array,parent_index):
     return array
 
 def build_heap(array):
+    """生成二叉堆"""
     if array:
         lenth = len(array)
         last_parent_index = (lenth - 2) // 2
