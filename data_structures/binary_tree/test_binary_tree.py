@@ -28,25 +28,32 @@ class BinaryTreeTestCase(unittest.TestCase):
         self.assertEqual(self.node_None1,None)
         self.assertTrue(self.node_full == self.node)
     
-    def test_pre_order_traveral(self):
+    def test_pre_order_traversal(self):
         """能否正确先序遍历"""
         
         # 当二叉树不为空
-        result = bt.pre_order_traveral(self.node_full)
+        result = bt.pre_order_traversal(self.node_full)
         self.assertListEqual(result,[1,2,3,4,5,6])
         
         # 当二叉树为空
-        result_None = bt.pre_order_traveral(None)
+        result_None = bt.pre_order_traversal(None)
         self.assertListEqual(result_None,[])
         
-    def test_in_order_traveral(self):
+    def test_in_order_traversal(self):
         """能否正确中序遍历"""
         
-        result = bt.pre_order_traveral(self.node_full)
+        result = bt.pre_order_traversal(self.node_full)
         self.assertListEqual(result,[1,2,3,4,5,6])
         
-        result_None = bt.pre_order_traveral(None)
+        result_None = bt.pre_order_traversal(None)
         self.assertListEqual(result_None,[])
     
-    
+    def test_level_order_traversal(self):
+        """能否正确层序遍历"""
+        
+        result = bt.level_order_traversal(self.node_full)
+        self.assertListEqual(result,[1,2,3,6,4,5])
+        
+        result_None = bt.level_order_traversal(None)
+        self.assertListEqual(result_None,[])
 unittest.main()

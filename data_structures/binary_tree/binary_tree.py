@@ -6,7 +6,7 @@
 @Time    :   2020/03/17 11:40:06
 @Author  :   cogito0823
 @Contact :   754032908@qq.com
-@Desc    :   生成二叉树、遍历二叉树
+@Desc    :   递归生成二叉树、遍历二叉树（层次遍历使用队列）
 '''
 
 class Node():
@@ -17,6 +17,7 @@ class Node():
         self.right_child = None
     
     def __eq__(self,other):
+        """重构__eq__方法"""
         return (self.__class__ == other.__class__ and 
                 self.data == other.data and 
                 ((not self.left_child and not other.left_child) or self.left_child.data == other.left_child.data) and 
@@ -34,42 +35,55 @@ def create_binary_tree(tree_list):
             return node
     return None
 
-def pre_order_traveral(node):
+def pre_order_traversal(node):
     """先序遍历"""
     result = []
-    def traveral(node):
+    def traversal(node):
         if node:
             result.append(node.data)
-            traveral(node.left_child)
-            traveral(node.right_child)
-    traveral(node)
+            traversal(node.left_child)
+            traversal(node.right_child)
+    traversal(node)
     return result
 
-def in_order_traveral(node):
+def in_order_traversal(node):
     """中序遍历"""
     result = []
     # 迭代算法
-    def traveral(node):
+    def traversal(node):
         if node:
-            traveral(node.left_child)
+            traversal(node.left_child)
             result.append(node.data)
-            traveral(node.right_child)
-    traveral(node)
+            traversal(node.right_child)
+    traversal(node)
     return result    
 
-def post_order_traveral(node):
+def post_order_traversal(node):
     """后序遍历"""
     result = []
-    def traveral(node):
+    def traversal(node):
         if node:
-            traveral(node.left_child)
-            traveral(node.right_child)
+            traversal(node.left_child)
+            traversal(node.right_child)
             result.append(node.data)
-    traveral(node)
+    traversal(node)
+    return result
+
+def level_order_traversal(node):
+    """层序遍历"""
+    result = []
+    tree_queue = [node]
+    while tree_queue and node:
+        node = tree_queue.pop(0)
+        result.append(node.data)
+        if node.left_child:
+            tree_queue.append(node.left_child)
+        if node.right_child:
+            tree_queue.append(node.right_child)
     return result
 
 if __name__ == "__main__":
     node = create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None,None])
-    List = post_order_traveral(node)
+    List = level_order_traversal(node)
     for i in List:
         print(i)

@@ -6,7 +6,7 @@
 @Time    :   2020/03/16 23:15:26
 @Author  :   cogito0823
 @Contact :   754032908@qq.com
-@Desc    :   用栈存储、遍历二叉树
+@Desc    :   用栈遍历二叉树
 '''
 
 class Node():
@@ -15,7 +15,7 @@ class Node():
         self.data = data
         self.left_child = None
         self.right_child = None
-    
+    """重构__wq__方法"""
     def __eq__(self,other):
         return (self.__class__ == other.__class__ and 
                 self.data == other.data and 
@@ -34,7 +34,7 @@ def create_binary_tree(tree_list):
             return node
     return None
         
-def pre_order_traveral(node):
+def pre_order_traversal(node):
     """先序遍历"""
     result = []
     tree_stack = []
@@ -49,7 +49,7 @@ def pre_order_traveral(node):
             node = node.right_child
     return result
 
-def in_order_traveral(node):
+def in_order_traversal(node):
     """中序遍历"""
     result = []
     tree_stack = []
@@ -65,24 +65,24 @@ def in_order_traveral(node):
             node = node.right_child
     return result
 
-def post_order_traveral(node):
-    """后序遍历"""
-    # result = []
-    tree_stack = [node]
-    while tree_stack:
-        while node:
-            while node.left_child:
-                tree_stack.append(node.left_child)
-                node = node.left_child
-            node = tree_stack[-1]
+# def post_order_traversal(node):
+#     """后序遍历"""
+#     # result = []
+#     tree_stack = [node]
+#     while tree_stack:
+#         while node:
+#             while node.left_child:
+#                 tree_stack.append(node.left_child)
+#                 node = node.left_child
+#             node = tree_stack[-1]
         
-        if node.right_child:
-            node = node.right_child
-        else:
-            print(node.data)
-            node = tree_stack.pop()
-            node = tree_stack[-1].right_child
-            tree_stack.append(node)
+#         if node.right_child:
+#             node = node.right_child
+#         else:
+#             print(node.data)
+#             node = tree_stack.pop()
+#             node = tree_stack[-1].right_child
+#             tree_stack.append(node)
     
 if __name__ == "__main__":
-    post_order_traveral(create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None]))
+    pre_order_traversal(create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None]))
