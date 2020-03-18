@@ -24,9 +24,11 @@ def down_adjust(array,parent_index):
     """下调操作"""
     if array:
         lenth = len(array)
+        if lenth == 1:
+            return array
         lchild_index = 2 * parent_index + 1
         rchild_index = lchild_index + 1
-        while parent_index <= (lenth-1) // 2 and (array[parent_index] > array[lchild_index] or (2 * parent_index + 2 < lenth and array[parent_index] > array[rchild_index])):
+        while parent_index <= (lenth-2) // 2 and (array[parent_index] > array[lchild_index] or (rchild_index < lenth and array[parent_index] > array[rchild_index])):
             
             if 2 * parent_index + 2 < lenth and array[lchild_index] > array[rchild_index]:
                 array[parent_index], array[rchild_index] = array[rchild_index], array[parent_index]
@@ -38,6 +40,16 @@ def down_adjust(array,parent_index):
                 parent_index = lchild_index
                 lchild_index = 2 * parent_index + 1
                 rchild_index = lchild_index + 1
+    return array
+
+down_adjust([7,0,1,2,3,4,5,6],0)
+
+def delete_element(array):
+    if array:
+        if len(array) == 1:
+            return []
+        array[0] = array.pop()
+        down_adjust(array,0)
     return array
 
 def build_heap(array):
