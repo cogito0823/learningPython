@@ -112,7 +112,7 @@ class Heap:
         """Returns top item tuple (Calculated value, item) from heap and removes it as well if present"""
         top_item_tuple = self.get_top()
         if top_item_tuple:
-            self.delete_item(top_item_tuple)
+            self.delete_item(top_item_tuple[0]) # 改动top_item_tuple[0]
         return top_item_tuple
 
 
