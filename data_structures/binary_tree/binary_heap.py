@@ -18,7 +18,7 @@ def up_adjust(array):
             array[child_index], array[parent_index] = array[parent_index], array[child_index]
             child_index = parent_index
             parent_index = (child_index-1) // 2
-    return array
+    return array    
 
 def down_adjust(array,parent_index):
     """下调操作"""
@@ -28,7 +28,9 @@ def down_adjust(array,parent_index):
             return array
         lchild_index = 2 * parent_index + 1
         rchild_index = lchild_index + 1
-        while parent_index <= (lenth-2) // 2 and (array[parent_index] > array[lchild_index] or (rchild_index < lenth and array[parent_index] > array[rchild_index])):
+        while (parent_index <= (lenth-2) // 2 and
+               (array[parent_index] > array[lchild_index] or
+                (rchild_index < lenth and array[parent_index] > array[rchild_index]))):
             
             if 2 * parent_index + 2 < lenth and array[lchild_index] > array[rchild_index]:
                 array[parent_index], array[rchild_index] = array[rchild_index], array[parent_index]
@@ -42,14 +44,12 @@ def down_adjust(array,parent_index):
                 rchild_index = lchild_index + 1
     return array
 
-down_adjust([7,0,1,2,3,4,5,6],0)
-
 def delete_element(array):
     if array:
         if len(array) == 1:
             return []
         array[0] = array.pop()
-        down_adjust(array,0)
+        array = heapify(array,0,len(array))
     return array
 
 def build_heap(array):
@@ -61,6 +61,32 @@ def build_heap(array):
             parent_index = last_parent_index - i
             down_adjust(array,parent_index)
     return array
+
+#################### 堆排序 #######################
+
+def heapify(array,index,heap_size):
+    largest = index
+    lchild_index = 2 * index + 1
+    rchild_index = 2 * index + 2
+    if lchild_index < heap_size and array[lchild_index] < array[largest]:
+        largest = lchild_index
+    if rchild_index < heap_size and array[rchild_index] < array[largest]:
+        largest = rchild_index
+    if largest != index:
+        array[largest], array[index] = array[index], array[largest]
+        heapify(array,largest,heap_size)
+    return array
+
+def heap_sort(array):
+    if array:
+        array = array[:]
+        n = len(array)
+        for i in range(n // 2 - 1, -1, -1):
+            array = heapify(array, i, n)
+        for i in range(n-1, 0, -1):
+            array[0], array[i] = array[i], array[0]
+            heapify(array, 0, i)
+        return array
 
 #################### 优先队列 ################### 
 
