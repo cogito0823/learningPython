@@ -15,18 +15,6 @@ import unittest
 class BheapTestCase(unittest.TestCase):
     """测试二叉堆"""
     
-    def setUp(self):
-        """setIp"""
-        # [0,1,2,3,4,5,6,7] = [0,1,2,3,4,5,6,7]
-        # [0,1,2,3,4,5,6] = [0,1,2,3,4,5,6]
-        # [1,2,3,4,5,6,7,0] = [1,2,3,4,5,6,7,0]
-        # [1,2,3,4,5,6,0] = [1,2,3,4,5,6,0]
-        # [7,0,1,2,3,4,5,6] = [7,0,1,2,3,4,5,6]
-        # [7,1,2,3,4,5,6] = [7,1,2,3,4,5,6]
-        # [4,3,7,0,2,6,5,1] = [4,3,7,0,2,6,5,1]
-        # [1] = [1]
-        # [] = []
-        # None = None
     def test_up_adjust(self):
         """测试插入操作"""
         result_up1 = binary_heap.up_adjust([1,2,3,4,5,6,7,0])
@@ -76,19 +64,19 @@ class BheapTestCase(unittest.TestCase):
         self.assertListEqual(result_delete_element2,[1,3,2,6,4,5])
         self.assertListEqual(result_one_element,[])
         self.assertEqual(result_emp,[])
-        self.assertEqual(result_None,None)
-        
+        self.assertEqual(result_None,None)  
     def test_queue(self):
         """测试优先队列"""
         array = [5,6,2,3,4,0,1]
         queue = binary_heap.Queue(array)
         queue_array = queue.array.copy()
         pop = queue.pop()
+        
         self.assertListEqual(queue_array,[0,3,1,6,4,2,5])
         self.assertListEqual(queue.array,[1,3,2,6,4,5])
         self.assertEqual(pop,0)
-    
     def test_heap_sort(self):
+        """测试堆排序"""
         sort_result = binary_heap.heap_sort(list([0,1,2,3,4,5,6,7]))
         self.assertListEqual(sort_result,list([7,6,5,4,3,2,1,0]))
             
