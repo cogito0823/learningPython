@@ -9,6 +9,8 @@
 @Desc    :   递归生成二叉树、遍历二叉树（层次遍历使用队列）
 '''
 
+import queue
+
 class Node():
     """节点类"""
     def __init__(self,data):
@@ -72,14 +74,15 @@ def post_order_traversal(node):
 def level_order_traversal(node):
     """层序遍历"""
     result = []
-    tree_queue = [node]
-    while tree_queue and node:
-        node = tree_queue.pop(0)
+    tree_queue = queue.Queue()
+    tree_queue.put(node)
+    while not tree_queue.empty() and node:
+        node = tree_queue.get()
         result.append(node.data)
         if node.left_child:
-            tree_queue.append(node.left_child)
+            tree_queue.put(node.left_child)
         if node.right_child:
-            tree_queue.append(node.right_child)
+            tree_queue.put(node.right_child)
     return result
 
 if __name__ == "__main__":
