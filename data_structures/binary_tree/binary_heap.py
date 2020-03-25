@@ -81,7 +81,7 @@ def heap_sort(array):
     if array:
         array = array[:]
         n = len(array)
-        for i in range(n // 2 - 1, -1, -1):
+        for i in range((n - 1) // 2 , -1, -1):
             array = heapify(array, i, n)
         for i in range(n-1, 0, -1):
             array[0], array[i] = array[i], array[0]
