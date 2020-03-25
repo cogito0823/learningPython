@@ -18,9 +18,7 @@ def quick_sort(array):
     >>> quick_sort([7,6,5,4,3,2,1,0])
     [0, 1, 2, 3, 4, 5, 6, 7]
     """
-    
-    length = len(array)
-    if length <= 1:
+    if not array:
         return array
     pivot = array.pop()
     greater, lesser = [], []

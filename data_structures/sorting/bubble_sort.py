@@ -21,15 +21,14 @@ def bubble_sort(array):
     """
     length = len(array)
     flag = True
-    for i in range(length-1):
+    for i in range(length - 1):
         for j in range(length - i - 1):
             if array[j] > array[j + 1]:
-                array[j], array[j + 1] = array[j + 1], array[j]
                 flag = False
+                array[j], array[j + 1] = array[j + 1], array[j]
         if flag:
             break
     return array
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
