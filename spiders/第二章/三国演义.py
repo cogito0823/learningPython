@@ -13,7 +13,7 @@ import string
 #小说的保存文件夹
 novel_save_dir = os.path.join(os.getcwd(),'盗墓笔记2019/')
 #小说站点的URL
-novel_base_url = 'http://www.biqukan.com'
+novel_base_url = 'https://www.biqukan.com'
 
 #获取小说的URL
 novel_url = urllib.parse.urljoin(novel_base_url,'/66_66997/')
@@ -22,7 +22,7 @@ chapter_url_list = []
 
 headers = {
     'Host': 'www.biqukan.com',
-    'Referer': 'http://www.biqukan.com',
+    'Referer': 'https://www.biqukan.com',
     'User-Agent': 'Mozilla/5.0 (Macintosh; lntel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
 }
 
