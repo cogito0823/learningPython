@@ -17,7 +17,9 @@ class Node():
         self.data = data
         self.left_child = None
         self.right_child = None
-    
+    def __repr__(self):
+        return str(self.data)
+    __str__ = __repr__
     def __eq__(self,other):
         """重构__eq__方法"""
         return (self.__class__ == other.__class__ and 
@@ -26,67 +28,53 @@ class Node():
                 ((not self.right_child and not other.right_child) or self.right_child.data == other.right_child.data))
 
         
-def create_binary_tree(tree_list):
-    """通过一个数组创建二叉树"""
-    if tree_list:
-        data = tree_list.pop(0)
-        if data:
+def create_binary_tree(array):
+    if array:
+        data = array.pop(0)
+        if data is not None:
             node = Node(data)
-            node.left_child = create_binary_tree(tree_list)
-            node.right_child = create_binary_tree(tree_list)
+            node.left = create_binary_tree(array)
+            node.right = create_binary_tree(array)
             return node
     return None
-
-def pre_order_traversal(node):
-    """先序遍历"""
-    result = []
-    def traversal(node):
-        if node:
-            result.append(node.data)
-            traversal(node.left_child)
-            traversal(node.right_child)
-    traversal(node)
-    return result
-
-def in_order_traversal(node):
-    """中序遍历"""
-    result = []
-    # 迭代算法
-    def traversal(node):
-        if node:
-            traversal(node.left_child)
-            result.append(node.data)
-            traversal(node.right_child)
-    traversal(node)
-    return result    
-
-def post_order_traversal(node):
-    """后序遍历"""
-    result = []
-    def traversal(node):
-        if node:
-            traversal(node.left_child)
-            traversal(node.right_child)
-            result.append(node.data)
-    traversal(node)
-    return result
-
-def level_order_traversal(node):
-    """层序遍历"""
-    result = []
-    tree_queue = queue.Queue()
-    tree_queue.put(node)
-    while not tree_queue.empty() and node:
-        node = tree_queue.get()
-        result.append(node.data)
-        if node.left_child:
-            tree_queue.put(node.left_child)
-        if node.right_child:
-            tree_queue.put(node.right_child)
-    return result
+def pre_order_traveral(node):
+    if node:
+        print(node.data)
+        pre_order_traveral(node.left)
+        pre_order_traveral(node.right)
+def in_order_traveral(node):
+    if node:
+        in_order_traveral(node.left)
+        print(node.data)
+        in_order_traveral(node.right)
+def post_order_traveral(node):
+    if node:
+        post_order_traveral(node.left)
+        post_order_traveral(node.right)
+        print(node.data)
+def pre_order_traveral_via_stack(root):
+    if root:
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                print(node)
+                stack.append(node.right)
+                stack.append(node.left)
+def level_order_traveral(root):
+    if root:
+        queue = [root]
+        while queue:
+            node = queue.pop(0)
+            if node:
+                print(node)
+                queue.append(node.left)
+                queue.append(node.right)
 
 if __name__ == "__main__":
-    node = create_binary_tree([1,2,3,4,None,None,5,None,None,6,None,None,None,None])
-    List = level_order_traversal(node)
-    for i in List:
-        print(i)
+    node = create_binary_tree([1,0,2,3,4,None,None,5,None,None,6,None,None,None,None])
+    pre_order_traveral(node)
+    level_order_traveral(node)
+    node = create_binary_tree([1,2,4, 8, None, None, 9, None, None, 5, None, None, 3, 6, None, None, 7])
+    pre_order_traveral(node)
+    level_order_traveral(node)
